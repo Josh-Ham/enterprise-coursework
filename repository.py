@@ -20,6 +20,14 @@ class Repository:
                 """
             )
             connection.commit()
+    
+    def clear(self):
+        with sqlite3.connect(self.database) as connection:
+            cursor = connection.cursor()
+            cursor.execute(
+                f"DELETE FROM {self.table}"
+            )
+            connection.commit()
 
     def insert(self, js):
         with sqlite3.connect(self.database) as connection:
@@ -29,6 +37,7 @@ class Repository:
                 (js["name"], js["artist"], js["file"])
             )
             connection.commit()
+            return cursor.rowcount
     
     def lookup(self, name, artist):
         with sqlite3.connect(self.database) as connection:

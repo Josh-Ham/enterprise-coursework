@@ -15,7 +15,7 @@ def endpoint1(name):
         track = { "name":name, "artist":artist, "file":file }
 
         if database.db.lookup(name, artist) == None:
-            if database.db.insert(js):
+            if database.db.insert(track):
                 return "",201 # Created
             else:
                 return "",500 # Internal server error
@@ -23,3 +23,6 @@ def endpoint1(name):
             return "",409 # Conflict - already exists in database
     else:
         return "",400 # Bad request
+
+if __name__ == "__main__":
+    app.run(host="localhost", port=3000)
