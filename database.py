@@ -21,4 +21,4 @@ def create_track():
         return "", 500 # Internal server error
 
 if __name__ == "__main__":
-    app.run(host="localhost", port=3001)
+    app.run(host="localhost", port=3000)

@@ -4,7 +4,7 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-DB_URL = "http://localhost:3001"
+DB_URL = "http://localhost:3000"
 
 @app.route("/admin/<string:name>", methods=["PUT"])
 def endpoint1(name):
@@ -20,8 +20,8 @@ def endpoint1(name):
     track = { "name":name, "artist":artist, "file":file }
 
     insert_url = f"{DB_URL}/tracks"
-    
+
     return requests.post(insert_url, json=track)
 
 if __name__ == "__main__":
-    app.run(host="localhost", port=3000)
+    app.run(host="localhost", port=3001)

@@ -1,3 +1,4 @@
+import base64
 import requests
 import unittest
 import database
@@ -10,7 +11,11 @@ class Testing(unittest.TestCase):
 
         name = "Blinding Lights"
         artist = "The Weekend"
-        file = "Blinding Lights.wav"
+        file_path = "Blinding Lights.wav"
+
+        with open(file_path, "rb") as file:
+            file_bytes = file.read()
+            encoded_file = base64.b64encode(file_bytes).decode("ascii")
 
         headers = {
             "Content-Type":"application/json"
@@ -19,7 +24,7 @@ class Testing(unittest.TestCase):
         json = {
             "name": name,
             "artist": artist,
-            "file": file
+            "file": encoded_file
         }
 
         response = requests.put(f'{admin}/{name}', headers=headers, json=json)
