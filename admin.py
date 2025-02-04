@@ -1,7 +1,10 @@
+import requests
 import database
 from flask import Flask, request
 
 app = Flask(__name__)
+
+DB_URL = "http://localhost:3001"
 
 @app.route("/admin/<string:name>", methods=["PUT"])
 def endpoint1(name):
@@ -11,18 +14,14 @@ def endpoint1(name):
     artist = js["artist"]
     file = js["file"]
 
-    if name2 != None and artist != None and file != None and name == name2:
-        track = { "name":name, "artist":artist, "file":file }
+    if not (name2 and artist and file) or name != name2:
+        return "", 400  # Bad Request
+    
+    track = { "name":name, "artist":artist, "file":file }
 
-        if database.db.lookup(name, artist) == None:
-            if database.db.insert(track):
-                return "",201 # Created
-            else:
-                return "",500 # Internal server error
-        else:
-            return "",409 # Conflict - already exists in database
-    else:
-        return "",400 # Bad request
+    insert_url = f"{DB_URL}/tracks"
+    
+    return requests.post(insert_url, json=track)
 
 if __name__ == "__main__":
     app.run(host="localhost", port=3000)
