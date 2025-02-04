@@ -40,3 +40,5 @@ class Repository:
             row = cursor.fetchone()
             if row:
                 return { "name":row[0], "artist":row[1], "file":row[2] }
+            else:
+                return None
