@@ -3,7 +3,7 @@ import requests
 import unittest
 import database
 
-admin = "http://localhost:3000/admin"
+admin = "http://localhost:3001/admin"
 
 class Testing(unittest.TestCase):
     def testInsertionGood(self):
