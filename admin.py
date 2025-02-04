@@ -8,14 +8,14 @@ DB_URL = "http://localhost:3000/tracks"
 
 @app.route("/admin/<string:name>", methods=["PUT"])
 def endpoint1(name):
-    js = request.get_json()
+    data = request.get_json()
 
-    name2 = js["name"]
-    artist = js["artist"]
-    file = js["file"]
+    if not data or "name" not in data or "artist" not in data or "file" not in data or name != name2:
+        return "", 400 # Bad request
 
-    if not (name2 and artist and file) or name != name2:
-        return "", 400  # Bad Request
+    name2 = data["name"]
+    artist = data["artist"]
+    file = data["file"]
     
     track = { "name":name, "artist":artist, "file":file }
 
