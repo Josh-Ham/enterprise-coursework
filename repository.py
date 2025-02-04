@@ -43,7 +43,7 @@ class Repository:
         with sqlite3.connect(self.database) as connection:
             cursor = connection.cursor()
             cursor.execute(
-                f"SELECT file FROM {self.table} WHERE (name, artist) = (?, ?)",
+                f"SELECT * FROM {self.table} WHERE (name, artist) = (?, ?)",
                 (name, artist), 
             )
             row = cursor.fetchone()
@@ -51,3 +51,13 @@ class Repository:
                 return { "name":row[0], "artist":row[1], "file":row[2] }
             else:
                 return None
+    
+    def delete(self, name, artist):
+        with sqlite3.connect(self.database) as connection:
+            cursor = connection.cursor()
+            cursor.execute(
+                f"DELETE FROM {self.table} WHERE (name, artist) = (?, ?)",
+                (name, artist), 
+            )
+            connection.commit()
+            return cursor.rowcount
