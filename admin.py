@@ -1,5 +1,4 @@
 import requests
-import database
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -41,7 +40,7 @@ def endpoint2(name):
 
 @app.route("/admin", methods=["GET"])
 def endpoint3():
-    response = requests.get(DB_URL)
+    response = requests.get(DB_URL + "_names")
 
     return response.content, response.status_code
 

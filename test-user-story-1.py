@@ -10,7 +10,7 @@ class Testing(unittest.TestCase):
         database.db.clear()
 
         name = "Blinding Lights"
-        artist = "The Weekend"
+        artist = "The Weeknd"
         file_path = "Blinding Lights.wav"
 
         with open(file_path, "rb") as file:
@@ -35,7 +35,7 @@ class Testing(unittest.TestCase):
         database.db.clear()
 
         name = "Blinding Lights"
-        artist = "The Weekend"
+        artist = "The Weeknd"
         file_path = "Blinding Lights.wav"
 
         with open(file_path, "rb") as file:
@@ -85,7 +85,7 @@ class Testing(unittest.TestCase):
         database.db.clear()
 
         name = "Blinding Lights"
-        artist = "The Weekend"
+        artist = "The Weeknd"
         file_path = "Blinding Lights.wav"
 
         with open(file_path, "rb") as file:

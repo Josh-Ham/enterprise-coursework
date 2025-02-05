@@ -35,14 +35,28 @@ def delete_track():
     else:
         return "", 500 # Internal server error
 
-@app.route("/tracks", methods=["GET"])
-def get_all_tracks():
-    names = db.get_all()
+@app.route("/tracks_names", methods=["GET"])
+def get_all_track_names():
+    names = db.get_names()
 
     if not names:
         return "", 404 # Not found anything in database
     
     return jsonify(names), 200
+
+@app.route("/tracks", methods=["GET"])
+def get_track():
+    data = request.get_json()
+
+    if not data or "name" not in data or "artist" not in data:
+        return "", 400 # Bad request
+    
+    track = db.lookup(data["name"], data["artist"])
+
+    if not track:
+        return "", 404 # Not found anything in database
+    
+    return jsonify(track), 200
 
 if __name__ == "__main__":
     app.run(host="localhost", port=3000)

@@ -62,7 +62,7 @@ class Repository:
             connection.commit()
             return cursor.rowcount
     
-    def get_all(self):
+    def get_names(self):
          with sqlite3.connect(self.database) as connection:
             cursor = connection.cursor()
             cursor.execute(
