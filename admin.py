@@ -39,5 +39,11 @@ def endpoint2(name):
 
     return response.content, response.status_code
 
+@app.route("/admin", methods=["GET"])
+def endpoint3():
+    response = requests.get(DB_URL)
+
+    return response.content, response.status_code
+
 if __name__ == "__main__":
     app.run(host="localhost", port=3001)

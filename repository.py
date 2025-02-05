@@ -61,3 +61,15 @@ class Repository:
             )
             connection.commit()
             return cursor.rowcount
+    
+    def get_all(self):
+         with sqlite3.connect(self.database) as connection:
+            cursor = connection.cursor()
+            cursor.execute(
+                f"SELECT name FROM {self.table}", 
+            )
+            rows = cursor.fetchall()
+            if rows:
+                return { "names":[row[0] for row in rows] }
+            else:
+                return None

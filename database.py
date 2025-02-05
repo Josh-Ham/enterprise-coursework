@@ -35,5 +35,14 @@ def delete_track():
     else:
         return "", 500 # Internal server error
 
+@app.route("/tracks", methods=["GET"])
+def get_all_tracks():
+    names = db.get_all()
+
+    if not names:
+        return "", 404 # Not found anything in database
+    
+    return jsonify(names), 200
+
 if __name__ == "__main__":
     app.run(host="localhost", port=3000)
