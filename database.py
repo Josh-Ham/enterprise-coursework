@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 db = repository.Repository("tracks")
 
-@app.route("/tracks", methods=["POST"])
+@app.route("/tracks", methods=["PUT"])
 def create_track():
     data = request.get_json()
 

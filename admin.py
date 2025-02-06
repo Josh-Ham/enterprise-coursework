@@ -18,7 +18,7 @@ def add_track(name):
     
     track = { "name":name2, "artist":artist, "file":file }
 
-    response = requests.post(DB_URL, json=track)
+    response = requests.put(DB_URL, json=track)
 
     return response.content, response.status_code
 
