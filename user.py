@@ -10,7 +10,7 @@ AUDD_URL = "https://api.audd.io/"
 AUDD_API_TOKEN = os.environ["KEY"]
 
 @app.route("/user", methods=["GET"])
-def endpoint1():
+def lookup_fragment():
     data = request.get_json()
 
     if not data or "fragment" not in data:

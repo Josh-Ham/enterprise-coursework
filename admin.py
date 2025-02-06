@@ -6,7 +6,7 @@ app = Flask(__name__)
 DB_URL = "http://localhost:3000/tracks"
 
 @app.route("/admin/<string:name>", methods=["PUT"])
-def endpoint1(name):
+def add_track(name):
     data = request.get_json()
 
     if not data or "name" not in data or "artist" not in data or "file" not in data or name != data["name"]:
@@ -23,7 +23,7 @@ def endpoint1(name):
     return response.content, response.status_code
 
 @app.route("/admin/<string:name>", methods=["DELETE"])
-def endpoint2(name):
+def delete_track(name):
     data = request.get_json()
 
     if not data or "name" not in data or "artist" not in data or name != data["name"]:
@@ -39,7 +39,7 @@ def endpoint2(name):
     return response.content, response.status_code
 
 @app.route("/admin", methods=["GET"])
-def endpoint3():
+def get_track_names():
     response = requests.get(DB_URL + "_names")
 
     return response.content, response.status_code
