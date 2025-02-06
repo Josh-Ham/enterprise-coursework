@@ -1,0 +1,14 @@
+# Ignore everything
+*
+
+# Allow only Python files
+!*.py
+!*.MD
+!*.pdf
+!*.git*
+
+# Ignore compiled Python files (__pycache__)
+__pycache__/
+
+# Allow songs folder
+!songs/
