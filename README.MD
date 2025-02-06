@@ -44,7 +44,7 @@ Ensure you have **Python 3** installed along with the following modules:
 
 3. **Start each microservice by running:**
 
-    In separate terminals:
+    In separate terminals - KEY must be set in the same terminal 'user.py' is run in:
     ```sh
     python user.py
     python admin.py
@@ -54,6 +54,10 @@ Ensure you have **Python 3** installed along with the following modules:
     In the same terminal:
     ```sh
     python user.py & python admin.py & python database.py
+    ```
+    To stop all in the same terminal:
+    ```sh
+    pkill -f python
     ```
 
 ## Testing
