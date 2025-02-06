@@ -6,7 +6,7 @@ import database
 admin = "http://localhost:3001/admin"
 
 class Testing(unittest.TestCase):
-    def testInsertionGood(self):
+    def testSuccess(self):
         database.db.clear()
 
         name = "Blinding Lights"
@@ -31,7 +31,7 @@ class Testing(unittest.TestCase):
 
         self.assertEqual(response.status_code, 201)
 
-    def testInsertionDuplicate(self):
+    def testDuplicateError(self):
         database.db.clear()
 
         name = "Blinding Lights"
@@ -58,7 +58,7 @@ class Testing(unittest.TestCase):
 
         self.assertEqual(response.status_code, 409)
     
-    def testInsertionBadRequest(self):
+    def testBadRequestError(self):
         database.db.clear()
 
         name = "Blinding Lights"
@@ -81,7 +81,7 @@ class Testing(unittest.TestCase):
 
         self.assertEqual(response.status_code, 400)
     
-    def testInsertionBadPath(self):
+    def testBadPathError(self):
         database.db.clear()
 
         name = "Blinding Lights"

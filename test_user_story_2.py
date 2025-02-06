@@ -1,16 +1,15 @@
-import base64
 import requests
 import unittest
-import database
+import test_utility
 
 admin = "http://localhost:3001/admin"
 
 class Testing(unittest.TestCase):
-    def testDeletionGood(self):
-        populate_database()
+    def testSuccess(self):
+        test_utility.populate_database()
 
         name = "Blinding Lights"
-        artist = "The Weekend"
+        artist = "The Weeknd"
 
         headers = {
             "Content-Type":"application/json"
@@ -25,9 +24,9 @@ class Testing(unittest.TestCase):
 
         self.assertEqual(response.status_code, 204)
 
-    def testDeletionNotExist(self):
+    def testEmptyError(self):
         name = "Blinding Lights"
-        artist = "The Weekend"
+        artist = "The Weeknd"
 
         headers = {
             "Content-Type":"application/json"
@@ -42,11 +41,11 @@ class Testing(unittest.TestCase):
 
         self.assertEqual(response.status_code, 404)
     
-    def testDeletionBadRequestPath(self):
-        populate_database()
+    def testBadPathError(self):
+        test_utility.populate_database()
 
         name = "Blinding Lights"
-        artist = "The Weekend"
+        artist = "The Weeknd"
 
         headers = {
             "Content-Type":"application/json"
@@ -61,8 +60,8 @@ class Testing(unittest.TestCase):
 
         self.assertEqual(response.status_code, 400)
     
-    def testDeletionBadRequest(self):
-        populate_database()
+    def testBadDataError(self):
+        test_utility.populate_database()
 
         name = "Blinding Lights"
 
@@ -78,25 +77,3 @@ class Testing(unittest.TestCase):
 
         self.assertEqual(response.status_code, 400)
 
-def populate_database():
-    database.db.clear()
-
-    name = "Blinding Lights"
-    artist = "The Weeknd"
-    file_path = "Blinding Lights.wav"
-
-    with open(file_path, "rb") as file:
-        file_bytes = file.read()
-        encoded_file = base64.b64encode(file_bytes).decode("ascii")
-
-    headers = {
-        "Content-Type":"application/json"
-    }
-
-    json = {
-        "name": name,
-        "artist": artist,
-        "file": encoded_file
-    }
-
-    requests.put(f'{admin}/{name}', headers=headers, json=json)
