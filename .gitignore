@@ -1,7 +1,7 @@
 # Ignore everything
 *
 
-# Allow only Python files
+# Allow only specific types files
 !*.py
 !*.MD
 !*.pdf
