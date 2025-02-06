@@ -62,7 +62,7 @@ Ensure you have **Python 3** installed along with the following modules:
 
 ## Testing
 
-The tests assume that the `songs` folder is populated with the following files:
+The tests assume that the `songs` folder exists and is populated with the following files:
 
 - "Blinding Lights.wav" by The Weeknd
 - "Dont Look Back In Anger.wav" by Oasis
