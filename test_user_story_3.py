@@ -1,4 +1,3 @@
-import base64
 from unittest.mock import MagicMock, patch
 import requests
 import unittest
@@ -44,3 +43,14 @@ class Testing(unittest.TestCase):
             
             response = requests.get(admin, headers=headers)
             self.assertEqual(response.status_code, 500)
+    
+    def testRequestError(self):
+        testing_utility.populate_database()
+
+        headers = {
+            "Content-Type":"application/json"
+        }
+
+        response = requests.get(f'{admin}/error', headers=headers)
+
+        self.assertEqual(response.status_code, 405)
