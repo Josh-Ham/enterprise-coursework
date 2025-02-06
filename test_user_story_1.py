@@ -5,13 +5,13 @@ import database
 
 admin = "http://localhost:3001/admin"
 
+name = "Blinding Lights"
+artist = "The Weeknd"
+file_path = "songs/Blinding Lights.wav"
+
 class Testing(unittest.TestCase):
     def testSuccess(self):
         database.db.clear()
-
-        name = "Blinding Lights"
-        artist = "The Weeknd"
-        file_path = "Blinding Lights.wav"
 
         with open(file_path, "rb") as file:
             file_bytes = file.read()
@@ -33,10 +33,6 @@ class Testing(unittest.TestCase):
 
     def testDuplicateError(self):
         database.db.clear()
-
-        name = "Blinding Lights"
-        artist = "The Weeknd"
-        file_path = "Blinding Lights.wav"
 
         with open(file_path, "rb") as file:
             file_bytes = file.read()
@@ -61,9 +57,6 @@ class Testing(unittest.TestCase):
     def testBadRequestError(self):
         database.db.clear()
 
-        name = "Blinding Lights"
-        file_path = "Blinding Lights.wav"
-
         with open(file_path, "rb") as file:
             file_bytes = file.read()
             encoded_file = base64.b64encode(file_bytes).decode("ascii")
@@ -83,10 +76,6 @@ class Testing(unittest.TestCase):
     
     def testBadPathError(self):
         database.db.clear()
-
-        name = "Blinding Lights"
-        artist = "The Weeknd"
-        file_path = "Blinding Lights.wav"
 
         with open(file_path, "rb") as file:
             file_bytes = file.read()
