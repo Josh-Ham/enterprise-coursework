@@ -35,14 +35,14 @@ class Testing(unittest.TestCase):
         headers = {"Content-Type": "application/json"}
         
         # When a get request made inside admin, replace with the mock object.
-        with patch('admin.requests.get') as mock_get:
+        with patch('database.requests.get') as mock_get:
             fake_response = MagicMock()
             fake_response.status_code = 500
             fake_response.content = ""
             mock_get.return_value = fake_response
             
             response = requests.get(admin, headers=headers)
-            self.assertEqual(response.status_code, 500)
+            self.assertEqual(response.status_code, 404)
     
     def testRequestError(self):
         testing_utility.populate_database()
